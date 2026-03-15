@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
 });
 
 
-app.post("/admincreate", async (req, res) => {
+app.post("/admin", async (req, res) => {
   const data = req.body;
 
   const result = await db.collection("admins").insertOne(data);
@@ -42,7 +42,7 @@ app.post("/admincreate", async (req, res) => {
 });
 
 
-app.get("/adminread/:id", async (req, res) => {
+app.get("/admins/:id", async (req, res) => {
   console.log("Received request for /admin route");
 
   if (!db) {
@@ -59,7 +59,7 @@ app.get("/adminread/:id", async (req, res) => {
 });
 
 
-app.patch("/adminupdate/:id", async (req, res) => {
+app.patch("/admins/:id", async (req, res) => {
   const id = req.params.id;
   console.log("Received update request for admin with ID:", id);
   console.log("Update data:", req.body);
@@ -73,7 +73,7 @@ const result = await db.collection("admins").updateOne(
   res.send(result);
 });
 
-app.delete("/admindelete/:id", async (req, res) => {
+app.delete("/admins/:id", async (req, res) => {
   const id = req.params.id;
 
   const result = await db.collection("admins").deleteOne({
